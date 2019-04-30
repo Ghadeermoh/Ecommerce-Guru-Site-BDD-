@@ -4,6 +4,7 @@ import org.junit.Assert;
 
 import com.qa.Pages.BaseTestClass;
 import com.qa.Pages.HomePage;
+import com.qa.Pages.MobilePage;
 import com.qa.util.Utilclass;
 
 import cucumber.api.java.After;
@@ -13,6 +14,7 @@ import cucumber.api.java.en.Then;
 
 public class HomeStepDefinition extends BaseTestClass{
 	public  HomePage homepage;
+	public MobilePage mobilepage;
 	@Before 
 	public void setup() {
 		init();
@@ -29,6 +31,12 @@ public class HomeStepDefinition extends BaseTestClass{
 		String Mobiletitle=homepage.Verify_mobile_icon();
 		Assert.assertEquals(Mobiletitle,Utilclass.expectedMobileTitle );
 	}
+	@Then("^customer sort items by name$")
+	public void customer_sort_items_by_name(){
+		mobilepage=new MobilePage();
+		String  Items=mobilepage.Verify_sort();
+	    System.out.println(Items);
+	}
 	
 	@Then("^customer click on TV icon$")
 	public void customer_click_on_TV_icon(){
@@ -41,6 +49,8 @@ public class HomeStepDefinition extends BaseTestClass{
 		String ItemsNumber=homepage.Verify_search();
 	    System.out.println(ItemsNumber);
 	}
+	
+	
 	
 	@After
 	public void Teardown() {
