@@ -10,7 +10,7 @@ import cucumber.api.junit.Cucumber;
 , glue="com.qa.StepDefinitions" 
 , dryRun=false
 ,monochrome=true
-,tags= {"@First"}
+,tags= {"@Fourth"}
 )
 
 public class EcommTestRunner {

@@ -5,6 +5,7 @@ import org.junit.Assert;
 import com.qa.Pages.BaseTestClass;
 import com.qa.Pages.HomePage;
 import com.qa.Pages.MobilePage;
+import com.qa.Pages.RegisterPage;
 import com.qa.util.Utilclass;
 
 import cucumber.api.java.After;
@@ -15,6 +16,7 @@ import cucumber.api.java.en.Then;
 public class HomeStepDefinition extends BaseTestClass{
 	public  HomePage homepage;
 	public MobilePage mobilepage;
+	public RegisterPage regpage;
 	@Before 
 	public void setup() {
 		init();
@@ -37,6 +39,10 @@ public class HomeStepDefinition extends BaseTestClass{
 		String  Items=mobilepage.Verify_sort();
 	    System.out.println(Items);
 	}
+	@Then("^verify images and links in mobile page$")
+	public void verify_images_and_links_in_mobile_page(){
+	    mobilepage.Verify_imgs_and_broken_links();
+	}
 	
 	@Then("^customer click on TV icon$")
 	public void customer_click_on_TV_icon(){
@@ -50,7 +56,21 @@ public class HomeStepDefinition extends BaseTestClass{
 	    System.out.println(ItemsNumber);
 	}
 	
-	
+	@Before ("@Fourth")
+	public void Before_fourth_scenario() {
+		regpage=new RegisterPage();
+		regpage.Verify_register_opening();
+	}
+	@Then("^customer go to register page from acount icon$")
+	public void customer_goto_register_page_from_acount_icon() {
+   String regpageTitle =regpage.Verify_RegPage_Title();
+   System.out.println(regpageTitle);
+   Assert.assertEquals("Create New Customer Account", regpageTitle);
+	}
+	@Then("^customer fills register page details \"([^\"]*)\" and \"([^\"]*)\" and \"([^\"]*)\" and \"([^\"]*)\" and \"([^\"]*)\" and click register$")
+	public void customer_fills_register_page_details(String fstName ,String lstname ,String mailadd ,String password ,String passconf ) {
+	    regpage.Verify_new_customer_register(fstName, lstname, mailadd, password, passconf);
+	}
 	
 	@After
 	public void Teardown() {

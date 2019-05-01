@@ -15,9 +15,6 @@ public class HomePage extends BaseTestClass{
 	@FindBy(xpath="//img[contains(text(),'Magento Commerce')]")
 	WebElement HomeLogo;
 	
-	@FindBy (xpath="//a[contains(text(),'#header-account')]")
-	WebElement AccountIcon;
-	
 	@FindBy (id="search")
 	WebElement SearchIcon;
 	
