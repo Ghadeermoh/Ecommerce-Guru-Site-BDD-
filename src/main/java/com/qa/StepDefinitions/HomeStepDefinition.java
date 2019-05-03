@@ -39,6 +39,42 @@ public class HomeStepDefinition extends BaseTestClass{
 		String  Items=mobilepage.Verify_sort();
 	    System.out.println(Items);
 	}
+	
+	@Then("^customer add mobile item to the cart and  change quantitiy to large value and update$")
+	public void customer_add_mobile_item_to_the_cart() {
+		mobilepage=new MobilePage();
+	    mobilepage.Verify_add_item_toCart();
+	}
+	@Then("^customer verify error message$")
+	public void customer_verify_error_message(){
+		String errormesage=mobilepage.verify_error_message();
+	    System.out.println(errormesage);
+	    Assert.assertEquals("* The maximum quantity allowed for purchase is 500.", errormesage);
+	}
+	
+	@Then("^customer empty the cart and verify it is empty$")
+	public void customer_empty_the_cart_and_verify_it_is_empty(){
+	   String mess= mobilepage.Empty_Cart_and_verify_this();
+	   System.out.println(mess);
+	   Assert.assertEquals("You have no items in your shopping cart.", mess);
+	    
+	}
+	
+	@Then("^customer add  items to compare and click on compare$")
+	public void customer_add_items_to_compare_and_click_on_compare(){
+		mobilepage=new MobilePage();
+	    mobilepage.Customer_add_items_toCompare();
+	}
+	
+	@Then("^customer verify popup window and items in it$")
+	public void customer_verify_popup_window_and_items_in_it(){
+		String itemsexist []=mobilepage.VerifyCompare_popup_window();
+		Assert.assertEquals("SONY XPERIA", itemsexist[0]);
+		Assert.assertEquals("IPHONE", itemsexist[1]);
+	    
+	}
+
+	
 	@Then("^verify images and links in mobile page$")
 	public void verify_images_and_links_in_mobile_page(){
 	    mobilepage.Verify_imgs_and_broken_links();
