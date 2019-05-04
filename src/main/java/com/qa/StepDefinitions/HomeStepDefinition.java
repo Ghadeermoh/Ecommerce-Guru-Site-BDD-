@@ -4,6 +4,7 @@ import org.junit.Assert;
 
 import com.qa.Pages.BaseTestClass;
 import com.qa.Pages.HomePage;
+import com.qa.Pages.LoginMyAccountPage;
 import com.qa.Pages.MobilePage;
 import com.qa.Pages.RegisterPage;
 import com.qa.util.Utilclass;
@@ -17,6 +18,7 @@ public class HomeStepDefinition extends BaseTestClass{
 	public  HomePage homepage;
 	public MobilePage mobilepage;
 	public RegisterPage regpage;
+	public LoginMyAccountPage loginAcc;
 	@Before 
 	public void setup() {
 		init();
@@ -73,6 +75,26 @@ public class HomeStepDefinition extends BaseTestClass{
 		Assert.assertEquals("IPHONE", itemsexist[1]);
 	    
 	}
+	
+	@Then("^customer go to Myaccount page from account icon$")
+	public void customer_go_to_Myaccount_page_from_account_icon(){
+		loginAcc=new LoginMyAccountPage();
+		String LoginTitle=loginAcc.Verify_open_LoginMyAcc_Page();
+	    System.out.println(LoginTitle);
+	}
+	
+	@Then("^customer enter login details \"([^\"]*)\" and \"([^\"]*)\" and click login$")
+	public void customer_enter_login_details_and_and_click_login(String UN, String Pass){
+	    
+	}
+	
+	@Then("^check the price or product in two pages and verify its same$")
+	public void check_the_price_or_product_in_two_pages_and_verify_its_same(){
+		mobilepage=new MobilePage();
+	   boolean pricecheck= mobilepage.Verify_product_cost();
+	   Assert.assertTrue(pricecheck);
+	}
+
 
 	
 	@Then("^verify images and links in mobile page$")

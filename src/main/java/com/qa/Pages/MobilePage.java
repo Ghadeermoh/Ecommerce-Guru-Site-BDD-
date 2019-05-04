@@ -44,15 +44,20 @@ public class MobilePage extends BaseTestClass{
 	@FindBy(xpath ="//a[contains(text(),'IPhone')]")
 	WebElement CompareItem2;
 	
-	
 	@FindBy(id="empty_cart_button")
 	WebElement EmptyCart;
-	
+
 	@FindBy (xpath ="//td[@class='product-cart-info']//p[@class='item-msg error']")
 	WebElement Errormessage;
 	
 	@FindBy (xpath="//*[@id=\"top\"]/body/div/div/div[2]/div/div/div[2]/p[1]")
 	WebElement CartEmptyMessage;
+	
+	@FindBy(id="product-price-1")
+	WebElement Productprice;
+	
+	@FindBy (id="product-collection-image-1")
+	WebElement Mobitem1;
 	
 	public MobilePage() {
 		PageFactory.initElements(driver, this);
@@ -98,6 +103,21 @@ public class MobilePage extends BaseTestClass{
 		driver.close();
 		driver.switchTo().window(firstwindowid);
 		return items;
+	}
+	
+	public boolean Verify_product_cost() {
+		String Price1=Productprice.getText();
+		System.out.println(Price1);
+		Mobitem1.click();
+		String Price2=Productprice.getText();
+		System.out.println(Price2);
+		if(Price1.equals(Price2)) {
+			return true;
+		}
+		else
+			
+		return false;
+		
 	}
 	
 	public void Verify_imgs_and_broken_links() {
